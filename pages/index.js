@@ -7,10 +7,13 @@ import {StyledTimeline} from '../src/components/Timeline'
 function HomePage() {
     
     return (
-
         <>
             <CSSReset />
-            <div>
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+            }}>
                 <Menu />
                 <Header />
                 <Timeline playlists={config.playlists} />
@@ -20,6 +23,15 @@ function HomePage() {
 }
 
 export default HomePage
+
+const StyledBanner = styled.div`
+    background-color: blue;
+    background-image: url(${({ bg }) => bg});
+    /* background-image: url(${config.bg}); */
+    background-size: cover;
+    background-position: center;
+    height: 230px;
+`;
 
 const StyledHeader = styled.div`
     img {
@@ -39,8 +51,8 @@ const StyledHeader = styled.div`
 function Header() {
     return (
         <StyledHeader>
-            {/* <img src="banner" alt="banner" /> */}
 
+            <StyledBanner bg={config.bg} />
 
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} alt="foto-de-perfil" />
@@ -60,9 +72,9 @@ function Timeline({ playlists }) {
     return (
         <StyledTimeline>
             {playlistsNames.map((playlistName) => {
-
+  
                 const videos = playlists[playlistName]
-
+  
                 return (
                     <section>
                         <h1>{playlistName.toUpperCase()}</h1>
