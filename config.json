@@ -4,7 +4,7 @@
     "github": "jeziel-almeida",
     "bg": "https://images.unsplash.com/photo-1592609931095-54a2168ae893?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     "playlists": {
-        "jogos": [
+        "Jogos": [
             {
                 "title": "Frostpunk - Neve e Steak tartare",
                 "url": "https://www.youtube.com/watch?v=QsqatJxAUtk",
@@ -46,7 +46,7 @@
                 "thumb": "https://img.youtube.com/vi/n3TneUb5c-w/hqdefault.jpg"
             }
         ],
-        "front-end": [
+        "Front-end": [
             {
                 "title": "Jogo com JavaScript #01: Criando um Flappy Bird do ZERO!!!",
                 "url": "https://youtube.com/watch?v=jOAU81jdi-c",
@@ -93,7 +93,7 @@
                 "thumb": "https://img.youtube.com/vi/d9c0r-J6CdM/hqdefault.jpg"
             }
         ],
-        "back-end": [
+        "Back-end": [
             {
                 "title": "Node JS: Construindo CRUDs com file system focando em serialização e JSON",
                 "url": "https://www.youtube.com/watch?v=dvd3pNYh7So",

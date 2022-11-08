@@ -2,7 +2,6 @@
 
 ![Série](https://img.shields.io/badge/Jeziel%20Almeida-AluraTube-blue)
 
-<p>&nbsp;</p>
 <h3 align="center">
 🚀 Tecnologias utilizadas
 <p>&nbsp;</p>

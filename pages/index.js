@@ -1,3 +1,4 @@
+import React from 'react'
 import config from '../config.json';
 import styled from 'styled-components';
 import {CSSReset} from '../src/components/CSSReset'
@@ -5,6 +6,8 @@ import Menu from '../src/components/Menu'
 import {StyledTimeline} from '../src/components/Timeline'
 
 function HomePage() {
+
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("")
     
     return (
         <>
@@ -14,9 +17,9 @@ function HomePage() {
                 flexDirection: "column",
                 flex: 1,
             }}>
-                <Menu />
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
-                <Timeline playlists={config.playlists} />
+                <Timeline searchValue={valorDoFiltro} playlists={config.playlists} />
             </div>
         </>
     )
@@ -65,7 +68,7 @@ function Header() {
     )
 }
 
-function Timeline({ playlists }) {
+function Timeline({ searchValue, playlists }) {
 
     const playlistsNames = Object.keys(playlists)
 
@@ -76,18 +79,27 @@ function Timeline({ playlists }) {
                 const videos = playlists[playlistName]
   
                 return (
-                    <section>
-                        <h1>{playlistName.toUpperCase()}</h1>
+                    <section key={playlistName}>
+                        <h2>{playlistName}</h2>
                         <div>
-                            {videos.map((video) => {
+                            {videos.filter((video) => {
+
+                                const titleNormalized = video.title.toLowerCase()
+                                const searchValueNormalized = searchValue.toLowerCase()
+
+                                return titleNormalized.includes(searchValueNormalized)
+
+                            }).map((video) => {
+
                                 return (
-                                    <a href={video.url}>
+                                    <a key={video.url} href={video.url}>
                                         <img src={video.thumb} />
                                         <span>
                                             {video.title}
                                         </span>
                                     </a>
                                 )
+
                             })}
                         </div>
                     </section>
