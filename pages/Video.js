@@ -7,8 +7,10 @@ export default function Video() {
 
     return (
         <>
-            <div>Video</div>
-            <button onClick={() => contexto.toggleMode()}>Mudar tema</button>
+            <div>
+                <div>Video</div>
+                <button onClick={() => contexto.toggleMode()}>Mudar tema</button>
+            </div>
         </>
     )
 }
