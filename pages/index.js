@@ -2,12 +2,36 @@ import React from 'react'
 import config from '../config.json';
 import styled from 'styled-components';
 import Menu from '../src/components/Menu'
-import {StyledTimeline} from '../src/components/Timeline'
+import { StyledTimeline } from '../src/components/Timeline'
+import { videoService } from '../src/services/videoService';
+
+
 
 function HomePage() {
 
+    const service = videoService();
     const [valorDoFiltro, setValorDoFiltro] = React.useState("")
-    
+    const [playlists, setPlaylists] = React.useState({})
+
+    React.useEffect(() => {
+
+        service.getAllVideos().then((dados) => {
+            const novasPlaylists = { ...playlists }
+            dados.data.forEach((video) => {
+                if (!novasPlaylists[video.playlist]) {
+                    novasPlaylists[video.playlist] = [];
+                }
+                novasPlaylists[video.playlist].push(video)
+            })
+            setPlaylists(novasPlaylists)
+        });
+
+
+    }, [])
+
+    console.log(playlists)
+
+
     return (
         <>
             <div style={{
@@ -17,7 +41,7 @@ function HomePage() {
             }}>
                 <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
-                <Timeline searchValue={valorDoFiltro} playlists={config.playlists} />
+                <Timeline searchValue={valorDoFiltro} playlists={playlists} />
             </div>
         </>
     )
@@ -35,7 +59,7 @@ const StyledBanner = styled.div`
 `;
 
 const StyledHeader = styled.div`
-    background-color: ${({theme}) => theme.backgroundLevel1};
+    background-color: ${({ theme }) => theme.backgroundLevel1};
     img {
         width: 80px;
         height: 80px;
@@ -73,9 +97,9 @@ function Timeline({ searchValue, playlists }) {
     return (
         <StyledTimeline>
             {playlistsNames.map((playlistName) => {
-  
+
                 const videos = playlists[playlistName]
-  
+
                 return (
                     <section key={playlistName}>
                         <h2>{playlistName}</h2>
